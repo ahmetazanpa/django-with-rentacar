@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+
+{% block title %}Dasboard{% endblock %}
+
+{% block content %}
+    <div class="mt-6 mb-12 px-6 py-12 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center">My Items</h2>
+        <div class="grid grid-cols-3 gap-3">
+            {% for item in items %}
+                <div class="shadow-2xl rounded-2xl mb-12">
+                    <a href="{% url 'item:detail' item.id %}">
+                        <div class="d-flex h-96">
+                            <img src="{{ item.image.url }}" 
+                                class="rounded-t-xl w-full h-full object-contain">
+                        </div>
+                    </a>
+                    <div class="p-6 bg-white rounded-b-xl">
+                        <h2 class="text-2xl">{{ item.name }}</h2>
+                        <p class="text-lg">Vites:{{ item.get_gear_display }}</p>
+                        <p class="text-lg">Koltuk:{{ item.seat }}</p>
+                        <p class="text-lg">Yakıt:{{ item.get_fuel_type_display }}</p>
+                        <p class="text-left text-gray-500">Daily Price: {{ item.price }}</p>                             
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
